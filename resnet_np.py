@@ -185,11 +185,8 @@ def test_all(params_path: str, data_dir: str):
     correct_top5 = 0
     total = 0
     start_time = time.time()
-    k = 0
     for imgs, labels in tqdm(testloader):
         print("Processing batch...")
-        if k >= 10:
-            break
         imgs = imgs.numpy()
         batch = []
         for img in imgs:
@@ -207,7 +204,6 @@ def test_all(params_path: str, data_dir: str):
                 correct_top1 += 1
             if label in top5_preds[i]:
                 correct_top5 += 1
-        k += 1 
     end_time = time.time()
     top1_acc = correct_top1 / total
     top5_acc = correct_top5 / total

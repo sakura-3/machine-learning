@@ -37,10 +37,7 @@ def main():
 
     with torch.no_grad():
         start_time = time.time()
-        i=0
         for inputs, targets in testloader:
-            if i > 10:
-                break
             inputs, targets = inputs.to(DEVICE), targets.to(DEVICE)
             outputs = net(inputs)
             _, pred = outputs.topk(5, 1, largest=True, sorted=True)  # (batch, 5)
@@ -48,7 +45,6 @@ def main():
             correct = pred.eq(targets.view(-1, 1).expand_as(pred))
             correct_top1 += correct[:, :1].sum().item()
             correct_top5 += correct.sum().item()
-            i += 1
         end_time = time.time()
     top1_acc = correct_top1 / total
     top5_acc = correct_top5 / total
