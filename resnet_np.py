@@ -5,7 +5,6 @@ from PIL import Image
 from typing import List
 from tqdm import tqdm
 import time
-
 params_path = "resnet18_cifar100.npy"
 
 def relu(x: np.ndarray) -> np.ndarray:
